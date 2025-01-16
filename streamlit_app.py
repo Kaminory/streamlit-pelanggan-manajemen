@@ -54,10 +54,11 @@ def delete_customer(customer_id):
     conn.commit()
     st.success("Pelanggan berhasil dihapus!")
 
-# Fungsi untuk mengirim email promosi
+# Fungsi untuk mengirim email promosi (diperbaiki)
 def send_email_promotion(subject, message):
-    sender_email = "your_email@gmail.com"  # Ganti dengan email Anda
-    sender_password = "your_password"      # Ganti dengan password email Anda
+    # Access secrets, assuming 'my_secrets' section in secrets.toml
+    sender_email = st.secrets["my_secrets"]["EMAIL"]  
+    sender_password = st.secrets["my_secrets"]["PASSWORD"]
 
     try:
         cursor.execute('SELECT email FROM customers')
@@ -128,6 +129,3 @@ elif menu == "Kirim Email Promosi":
     message = st.text_area("Isi Pesan")
     if st.button("Kirim"):
         send_email_promotion(subject, message)
-        
-    email = st.secrets["EMAIL"]
-    password = st.secrets["PASSWORD"]
