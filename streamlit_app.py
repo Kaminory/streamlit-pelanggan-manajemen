@@ -128,3 +128,6 @@ elif menu == "Kirim Email Promosi":
     message = st.text_area("Isi Pesan")
     if st.button("Kirim"):
         send_email_promotion(subject, message)
+        
+    email = st.secrets["EMAIL"]
+    password = st.secrets["PASSWORD"]
